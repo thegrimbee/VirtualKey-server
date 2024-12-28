@@ -1,0 +1,8 @@
+{
+    "users" : {
+        "example" : {
+            "email" : "example@example.com",
+            "key" : "aBcD3FgH"
+        }
+    }
+}
