@@ -2,7 +2,8 @@
     "users" : {
         "example" : {
             "email" : "example@example.com",
-            "key" : "aBcD3FgH"
+            "key" : "aBcD3FgH",
+            "hash" : "b434f6a397a7012617912603153483b4dc64a6616e5e9a79e178ef915e0d1671"
         }
     }
 }
