@@ -20,6 +20,15 @@ class ValidationRequest(BaseModel):
     username: str
     received_hash: str
 
+class RegisterRequest(BaseModel):
+    username: str
+    password: str
+    received_hash: str
+
+class LoginRequest(BaseModel):
+    username: str
+    password: str
+
 @app.post("/validate")
 def generate_hash(request: ValidationRequest):
     hash_to_compare = request.received_hash
@@ -32,7 +41,7 @@ def generate_hash(request: ValidationRequest):
     return {"username": request.username, "is_valid": hash_to_compare == truncated_hex_digest}
 
 @app.post("/register")
-def register_user(request: ValidationRequest):
+def register_user(request: RegisterRequest):
     if request.username in database["users"]:
         raise HTTPException(status_code=400, detail="User already exists")
     
@@ -41,7 +50,7 @@ def register_user(request: ValidationRequest):
     return {"username": request.username, "key": request.received_hash}
 
 @app.post("/login")
-def login_user(request: ValidationRequest):
+def login_user(request: LoginRequest):
     if request.username not in database["users"]:
         raise HTTPException(status_code=400, detail="User does not exist")
     sha256_hash = hashlib.sha256()
