@@ -50,3 +50,7 @@ def login_user(request: ValidationRequest):
     if sha256_hash.hexdigest() != database["users"][request.username]["hash"]:
         raise HTTPException(status_code=400, detail="Invalid password")
     return {"username": request.username}
+
+@app.post("/test")
+def test(request: ValidationRequest):
+    return {"username": request.username}
